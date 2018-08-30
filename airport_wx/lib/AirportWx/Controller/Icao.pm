@@ -19,7 +19,7 @@ sub getWx {
   # Get the airport code the user submitted
   my $ac = lc $self->param('airportCode');
   # Strip off any leading "K"
-  $ac =~ s/^[kK](\w{3})/$1/;
+  $ac =~ s/^[kK]([\w\d]{3})/$1/;
 
   my $FAAurl = 'https://soa.smext.faa.gov/asws/api/airport/status/';
   my $AWCurl = Mojo::URL->new('https://aviationweather.gov/adds/dataserver_current/httpparam')->query(
@@ -35,12 +35,17 @@ sub getWx {
   my $decodedjson = decode_json ($ua->get($FAAurl . $ac)->result->body);
   my $AWCdom = Mojo::DOM->new($ua->get($AWCurl)->result->body);
 
-  $self->render(
-    template => 'icao/results',
-    decodedjson => $decodedjson,
-    AWCdom => $AWCdom
-  );
-
+  if ($decodedjson->{'Status'}[1]->{'Reason'}) {
+    $self->render(
+      template => 'icao/error',
+      decodedjson => $decodedjson
+    );
+  } else {
+      $self->render(
+        template => 'icao/results',
+        decodedjson => $decodedjson,
+        AWCdom => $AWCdom);
+  }
 }
 
 1;

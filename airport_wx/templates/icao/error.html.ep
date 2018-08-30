@@ -1,0 +1,5 @@
+% layout 'default';
+
+
+<p> There was an issue obtaining information for the airport requested </p>
+<p> Message: <%= $decodedjson->{'Status'}[1]->{'Reason'} %> </p>
