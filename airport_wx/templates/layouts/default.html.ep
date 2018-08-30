@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head><title>ICAO airport code weather lookup</title></head>
+  <body>
+    <h2>Welcome to the ICAO airport code weather lookup</h2>
+    <p>
+      Use the following form to get the current weather for an airport. Please enter the proper ICAO code into the search box.
+
+      %= form_for icao => (method => 'POST') => begin
+        %= text_field 'airportCode'
+        %= submit_button 'Look Up'
+      % end
+    </p>
+    <%= content %>
+
+
+  </body>
+</html>

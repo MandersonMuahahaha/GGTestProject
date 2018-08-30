@@ -1,0 +1,9 @@
+% layout 'default';
+
+<p> Location: <%= $decodedjson->{'City'} %> </p>
+<p> Temperature: <%= $decodedjson->{'Weather'}->{'Temp'}[0] %> </p>
+<p> Wind: <%= $decodedjson->{'Weather'}->{'Wind'}[0] %> </p>
+<p> Visibility: <%= $decodedjson->{'Weather'}->{'Visibility'}[0] %> </p>
+<p> Sky Condition: <%= $decodedjson->{'Weather'}->{'Weather'}[0]->{'Temp'}[0] %> </p>
+
+</p>
