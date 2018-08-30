@@ -1,9 +1,17 @@
 % layout 'default';
 
-<p> Location: <%= $decodedjson->{'City'} %> </p>
-<p> Temperature: <%= $decodedjson->{'Weather'}->{'Temp'}[0] %> </p>
-<p> Wind: <%= $decodedjson->{'Weather'}->{'Wind'}[0] %> </p>
-<p> Visibility: <%= $decodedjson->{'Weather'}->{'Visibility'}[0] %> </p>
-<p> Sky Condition: <%= $decodedjson->{'Weather'}->{'Weather'}[0]->{'Temp'}[0] %> </p>
 
-</p>
+<p> FAA Airport Information: </p>
+<ul>
+<li> Location: <%= $decodedjson->{'City'} %> </li>
+<li> Temperature: <%= $decodedjson->{'Weather'}->{'Temp'}[0] %> </li>
+<li> Wind: <%= $decodedjson->{'Weather'}->{'Wind'}[0] %> </li>
+<li> Visibility: <%= $decodedjson->{'Weather'}->{'Visibility'}[0] %> </li>
+<li> Sky Condition: <%= $decodedjson->{'Weather'}->{'Weather'}[0]->{'Temp'}[0] %> </li>
+</ul>
+
+<p> Aviation Weather Center Information: </p>
+<ul>
+<li> METAR: <%= $AWCdom->at('METAR')->at('raw_text')->text %> </li>
+<li> Flight Category: <%= $AWCdom->at('METAR')->at('flight_category')->text %> </li>
+</ul>
